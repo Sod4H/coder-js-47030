@@ -39,7 +39,7 @@ do {
   juego();
   jugarDeNuevo = prompt("¿Querés volver a jugar? (Si/No)").toLowerCase();
   
-  if (jugarDeNuevo === "si") {
+  if (jugarDeNuevo === "no") {
     const buscar = prompt("¿Deseas buscar un resultado en el historial? (Si/No)").toLowerCase();
     if (buscar === "si") {
       buscarEnHistorial();
@@ -50,7 +50,7 @@ do {
 
 
 function buscarEnHistorial() {
-  const busqueda = prompt("Ingresa el resultado que deseas buscar:");
+  const busqueda = prompt("Ingresa el nombre que deseas buscar:");
 
   const resultadosCoincidentes = historial.filter((resultado) => resultado.includes(busqueda));
 
