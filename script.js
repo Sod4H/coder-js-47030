@@ -1,6 +1,10 @@
-alert("¡Vamos a jugar a los dados!");
+const historial = []; 
 
-const historial = [];
+function bienvenida() {
+  alert("¡Vamos a jugar a los dados!");
+}
+
+bienvenida();
 
 function juego() {
   const jugador1 = prompt("Ingresa el nombre del Jugador 1:");
@@ -32,22 +36,21 @@ function juego() {
   determinarGanador();
 }
 
-let jugarDeNuevo;
+function reiniciarJuego() {
+  let jugarDeNuevo;
 
+  do {
+    juego();
+    jugarDeNuevo = prompt("¿Querés volver a jugar? (Si/No)").toLowerCase();
 
-do {
-  juego();
-  jugarDeNuevo = prompt("¿Querés volver a jugar? (Si/No)").toLowerCase();
-  
-  if (jugarDeNuevo === "no") {
-    const buscar = prompt("¿Deseas buscar un resultado en el historial? (Si/No)").toLowerCase();
-    if (buscar === "si") {
-      buscarEnHistorial();
+    if (jugarDeNuevo === "no") {
+      const buscar = prompt("¿Deseas buscar un resultado en el historial? (Si/No)").toLowerCase();
+      if (buscar === "si") {
+        buscarEnHistorial();
+      }
     }
-  }
-} while (jugarDeNuevo === "si");
-
-
+  } while (jugarDeNuevo === "si"); 
+}
 
 function buscarEnHistorial() {
   const busqueda = prompt("Ingresa el nombre que deseas buscar:");
@@ -61,4 +64,9 @@ function buscarEnHistorial() {
   }
 }
 
-alert("Historial de partidos:\n" + historial.join('\n') + "\nGracias por jugar. ¡Hasta luego!");
+function cierreDelSimulador() { 
+  alert("Historial de partidos:\n" + historial.join('\n') + "\nGracias por jugar. ¡Hasta luego!");
+}
+
+reiniciarJuego();
+cierreDelSimulador(); 
