@@ -1,4 +1,5 @@
-const historial = []; 
+const historial = [];
+
 
 function bienvenida() {
   alert("¡Vamos a jugar a los dados!");
@@ -7,28 +8,35 @@ function bienvenida() {
 bienvenida();
 
 function juego() {
-  const jugador1 = prompt("Ingresa el nombre del Jugador 1:");
-  const jugador2 = prompt("Ingresa el nombre del Jugador 2:");
+  const jugador1 = {
+    nombre: prompt("Ingresa el nombre del Jugador 1:"),
+    resultado: [],
+  };
+
+  const jugador2 = {
+    nombre: prompt("Ingresa el nombre del Jugador 2:"),
+    resultado: [],
+  };
 
   function tirarDado() {
     return Math.floor(Math.random() * 6) + 1;
   }
 
   function determinarGanador() {
-    const resultadoJugador1 = tirarDado();
-    const resultadoJugador2 = tirarDado();
+    jugador1.resultado = tirarDado();
+    jugador2.resultado = tirarDado();
 
-    alert(jugador1 + " lanzó un dado y obtuvo un " + resultadoJugador1);
-    alert(jugador2 + " lanzó un dado y obtuvo un " + resultadoJugador2);
+    alert(jugador1.nombre + " lanzó un dado y obtuvo un " + jugador1.resultado);
+    alert(jugador2.nombre + " lanzó un dado y obtuvo un " + jugador2.resultado);
 
-    if (resultadoJugador1 > resultadoJugador2) {
-      historial.push(jugador1 + " ganó");
-      alert(jugador1 + " gana!");
-    } else if (resultadoJugador2 > resultadoJugador1) {
-      historial.push(jugador2 + " ganó");
-      alert(jugador2 + " gana!");
+    if (jugador1.resultado > jugador2.resultado) {
+      historial.push({ ganador: jugador1.nombre });
+      alert(jugador1.nombre + " gana!");
+    } else if (jugador2.resultado > jugador1.resultado) {
+      historial.push({ ganador: jugador2.nombre });
+      alert(jugador2.nombre + " gana!");
     } else {
-      historial.push("Empate");
+      historial.push({ ganador: "Empate" });
       alert("Es un empate.");
     }
   }
@@ -49,24 +57,27 @@ function reiniciarJuego() {
         buscarEnHistorial();
       }
     }
-  } while (jugarDeNuevo === "si"); 
+  } while (jugarDeNuevo === "si");
 }
 
 function buscarEnHistorial() {
   const busqueda = prompt("Ingresa el nombre que deseas buscar:");
 
-  const resultadosCoincidentes = historial.filter((resultado) => resultado.includes(busqueda));
+  const resultadosCoincidentes = historial.filter((resultado) =>
+    resultado.ganador.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
   if (resultadosCoincidentes.length === 0) {
-    alert("No se encontraron usuarios con ese nombre.");
+    alert("No se encontraron juegos con ese nombre.");
   } else {
-    alert("Historial\n" + resultadosCoincidentes.join('\n'));
+    const historialFormatado = resultadosCoincidentes.map((resultado) => resultado.ganador).join('\n');
+    alert("Historial\n" + historialFormatado);
   }
 }
 
-function cierreDelSimulador() { 
-  alert("Historial de partidos:\n" + historial.join('\n') + "\nGracias por jugar. ¡Hasta luego!");
+function cierreDelSimulador() {
+  alert("Historial de partidos:\n" + historial.map((resultado) => resultado.ganador).join('\n') + "\nGracias por jugar. ¡Hasta luego!");
 }
 
 reiniciarJuego();
-cierreDelSimulador(); 
+cierreDelSimulador();
