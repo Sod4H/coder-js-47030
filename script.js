@@ -1,6 +1,5 @@
 const historial = [];
 
-
 function bienvenida() {
   alert("¡Vamos a jugar a los dados!");
 }
@@ -10,12 +9,12 @@ bienvenida();
 function juego() {
   const jugador1 = {
     nombre: prompt("Ingresa el nombre del Jugador 1:"),
-    resultado: [],
+    resultado: 0, 
   };
 
   const jugador2 = {
     nombre: prompt("Ingresa el nombre del Jugador 2:"),
-    resultado: [],
+    resultado: 0, 
   };
 
   function tirarDado() {
