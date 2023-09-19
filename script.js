@@ -5,6 +5,8 @@ const nombreJugador1 = document.getElementById('nombreJugador1');
 const nombreJugador2 = document.getElementById('nombreJugador2');
 const resultadoDiv = document.getElementById('resultado');
 const historialDiv = document.getElementById('historial');
+const borrarHistorialButton = document.getElementById('borrarHistorial');
+borrarHistorialButton.addEventListener('click', borrarHistorial);
 
 cargarHistorialDesdeLocalStorage();
 
@@ -70,4 +72,9 @@ function cargarHistorialDesdeLocalStorage() {
   }
 }
 
+function borrarHistorial() {
+  historial = [];
+  guardarHistorialEnLocalStorage();
+  mostrarHistorial();
+}
 inputForm.addEventListener('submit', juego);
