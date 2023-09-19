@@ -74,7 +74,7 @@ function cargarHistorialDesdeLocalStorage() {
 
 function borrarHistorial() {
   historial = [];
-  guardarHistorialEnLocalStorage();
-  mostrarHistorial();
+  guardarHistorialEnLocalStorage(); 
+  location.reload(); 
 }
 inputForm.addEventListener('submit', juego);
