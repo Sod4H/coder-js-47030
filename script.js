@@ -1,16 +1,15 @@
-const historial = [];
+let historial = [];
 
-// Obtener referencias a elementos del DOM
-const inputForm = document.getElementById("inputForm");
-const nombreJugador1 = document.getElementById("nombreJugador1");
-const nombreJugador2 = document.getElementById("nombreJugador2");
-const resultadoDiv = document.getElementById("resultado");
-const historialDiv = document.getElementById("historial");
+const inputForm = document.getElementById('inputForm');
+const nombreJugador1 = document.getElementById('nombreJugador1');
+const nombreJugador2 = document.getElementById('nombreJugador2');
+const resultadoDiv = document.getElementById('resultado');
+const historialDiv = document.getElementById('historial');
 
-cargarHistorial();// Carga el historial desde LocalStorage al inicio
+cargarHistorialDesdeLocalStorage();
 
 function juego(event) {
-  event.preventDefault(); // Evitar que el formulario se envíe
+  event.preventDefault();
 
   const jugador1 = {
     nombre: nombreJugador1.value,
@@ -39,13 +38,9 @@ function juego(event) {
 
   resultadoDiv.innerHTML = resultadoHTML;
 
-  historial.push({
-    ganador,
-    jugador1: jugador1.resultado,
-    jugador2: jugador2.resultado,
-  });
+  historial.push({ ganador, jugador1: jugador1.resultado, jugador2: jugador2.resultado });
 
-  guardarHistorial();
+  guardarHistorialEnLocalStorage();
 
   mostrarHistorial();
 }
@@ -55,25 +50,19 @@ function tirarDado() {
 }
 
 function mostrarHistorial() {
-  const historialHTML = historial
-    .map(
-      (resultado, index) => `
-    <p>Partida ${index + 1}: ${resultado.jugador1} vs ${
-        resultado.jugador2
-      } - Ganador: ${resultado.ganador}</p>
-  `
-    )
-    .join("");
+  const historialHTML = historial.map((resultado, index) => `
+    <p>Partida ${index + 1}: ${resultado.jugador1} vs ${resultado.jugador2} - Ganador: ${resultado.ganador}</p>
+  `).join('');
 
   historialDiv.innerHTML = `<h2>Historial</h2>${historialHTML}`;
 }
 
-function guardarHistorial() {
-  localStorage.setItem("historial", JSON.stringify(historial));
+function guardarHistorialEnLocalStorage() {
+  localStorage.setItem('historial', JSON.stringify(historial));
 }
 
-function cargarHistorial() {
-  const historialGuardado = localStorage.getItem("historial");
+function cargarHistorialDesdeLocalStorage() {
+  const historialGuardado = localStorage.getItem('historial');
 
   if (historialGuardado) {
     historial = JSON.parse(historialGuardado);
@@ -81,4 +70,4 @@ function cargarHistorial() {
   }
 }
 
-inputForm.addEventListener("submit", juego);
+inputForm.addEventListener('submit', juego);
