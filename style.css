@@ -1,0 +1,43 @@
+body {
+    background-color: #a0c8f0; /* Fondo azulado apagado */
+}
+
+h1 {
+    text-align: center; /* Centrar el título */
+    font-size: 2.5rem; /* Tamaño de fuente más grande */
+    margin-top: 1rem; /* Añadir un poco de espacio encima del título */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar el formulario */
+    margin-top: 2rem; /* Añadir un poco de espacio encima del formulario */
+}
+
+label {
+    font-size: 1.2rem; /* Tamaño de fuente más grande para las etiquetas */
+    margin-bottom: 0.5rem; /* Añadir un poco de espacio debajo de las etiquetas */
+}
+
+input[type="text"] {
+    font-size: 1.2rem; /* Tamaño de fuente más grande para los campos de texto */
+    padding: 0.5rem; /* Añadir un poco de espacio dentro de los campos de texto */
+    margin-bottom: 1rem; /* Añadir un poco de espacio debajo de los campos de texto */
+}
+
+button {
+    font-size: 1.2rem; /* Tamaño de fuente más grande para los botones */
+    padding: 0.5rem 1rem; /* Añadir un poco de espacio dentro de los botones */
+    margin-top: 1rem; /* Añadir un poco de espacio encima de los botones */
+}
+
+#resultado {
+    margin-top: 2rem; /* Añadir un poco de espacio encima del resultado */
+    font-size: 1.2rem; /* Tamaño de fuente más grande para el resultado */
+}
+
+#historial {
+    margin-top: 2rem; /* Añadir un poco de espacio encima del historial */
+    font-size: 1.2rem; /* Tamaño de fuente más grande para el historial */
+}
