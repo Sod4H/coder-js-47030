@@ -12,17 +12,14 @@ cargarHistorialDesdeLocalStorage();
 
 function juego(event) {
   event.preventDefault();
-
   const jugador1 = {
     nombre: nombreJugador1.value,
     resultado: tirarDado(),
   };
-
   const jugador2 = {
     nombre: nombreJugador2.value,
     resultado: tirarDado(),
   };
-
   let ganador;
   if (jugador1.resultado > jugador2.resultado) {
     ganador = jugador1.nombre;
@@ -31,19 +28,14 @@ function juego(event) {
   } else {
     ganador = "Empate";
   }
-
   const resultadoHTML = `
     <p>${jugador1.nombre} lanzó un dado y obtuvo un ${jugador1.resultado}</p>
     <p>${jugador2.nombre} lanzó un dado y obtuvo un ${jugador2.resultado}</p>
     <p>${ganador} gana!</p>
   `;
-
   resultadoDiv.innerHTML = resultadoHTML;
-
-  historial.push({ ganador, jugador1: jugador1.resultado, jugador2: jugador2.resultado });
-
+  historial.push({ ganador, jugador1, jugador2 });
   guardarHistorialEnLocalStorage();
-
   mostrarHistorial();
 }
 
@@ -53,9 +45,8 @@ function tirarDado() {
 
 function mostrarHistorial() {
   const historialHTML = historial.map((resultado, index) => `
-    <p>Partida ${index + 1}: ${resultado.jugador1} vs ${resultado.jugador2} - Ganador: ${resultado.ganador}</p>
+    <p>Partida ${index + 1}: ${resultado.jugador1.nombre} (Resultado: ${resultado.jugador1.resultado}) vs ${resultado.jugador2.nombre} (Resultado: ${resultado.jugador2.resultado}) - Ganador: ${resultado.ganador}</p>
   `).join('');
-
   historialDiv.innerHTML = `<h2>Historial</h2>${historialHTML}`;
 }
 
