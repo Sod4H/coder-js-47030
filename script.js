@@ -63,6 +63,22 @@ function cargarHistorialDesdeLocalStorage() {
   }
 }
 
+function cargarSalonDeLaFama() {
+  fetch('hall_of_fame.json')
+    .then(response => response.json())
+    .then(data => {
+      const salonDeLaFamaDiv = document.getElementById('salonDeLaFama');
+      const salonDeLaFamaHTML = data.map((jugador, index) => `
+        <p>${index + 1}. ${jugador.nombre} - Puntaje: ${jugador.puntaje}</p>
+      `).join('');
+      salonDeLaFamaDiv.innerHTML = `<h2>Salón de la Fama</h2>${salonDeLaFamaHTML}`;
+    })
+    .catch(error => console.error('Error al cargar el salón de la fama', error));
+}
+
+cargarSalonDeLaFama();
+
+
 function borrarHistorial() {
   historial = [];
   guardarHistorialEnLocalStorage(); 
