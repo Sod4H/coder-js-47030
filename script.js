@@ -12,12 +12,27 @@ cargarHistorialDesdeLocalStorage();
 
 function juego(event) {
   event.preventDefault();
+  
+  const nombre1 = nombreJugador1.value.trim(); // Obtener el nombre del jugador 1
+  const nombre2 = nombreJugador2.value.trim(); // Obtener el nombre del jugador 2
+
+  // Verificar si se ingresaron nombres
+  if (!nombre1 || !nombre2) {
+    // Mostrar un mensaje de alerta SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Debes ingresar los nombres de ambos jugadores.',
+    });
+    return; // Salir de la función sin continuar el juego
+  }
+
   const jugador1 = {
-    nombre: nombreJugador1.value,
+    nombre: nombre1,
     resultado: tirarDado(),
   };
   const jugador2 = {
-    nombre: nombreJugador2.value,
+    nombre: nombre2,
     resultado: tirarDado(),
   };
   let ganador;
